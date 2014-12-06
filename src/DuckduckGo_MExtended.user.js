@@ -201,7 +201,7 @@ function onHashChange() {
         window.location.hash = "";
     window.addEventListener("hashchange", function() {
         if (window.location.hash.indexOf("{searchTerms}") !== -1)
-            window.location.href = window.location.hash.substr(1).replace("{searchTerms}", escape(document.getElementById("search_form_input").value));
+            window.location.href = window.location.hash.substr(1).replace("{searchTerms}", encodeURIComponent(document.getElementById("search_form_input").value));
     }, false);
 }
 
