@@ -26,9 +26,18 @@ function addGlobalStyle(css) {
     head.appendChild(style);
 }
 
+//Menu Style
 addGlobalStyle(".ddgm { background-color:  #24272A; height: 40px; }");
-addGlobalStyle(".ddgmbutton { background-color: #24272A; height: 40px; width: auto; text-align: center; display: inline-block;vertical-align: top; font-family: inherit; font-size: 1.2em; font-weight: 600; color: white;	padding-top: 7px; border-width: 3px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;}"); 
-addGlobalStyle(".ddgmbutton:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
+
+//Button Style
+addGlobalStyle(".ddgmbtn { background-color: #24272A; height: 25px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 6px;padding-bottom: 8px; font-family: inherit; font-size: 1.2em; font-weight: 600; color: white; border-width: 3px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;}"); 
+addGlobalStyle(".ddgmbtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
+addGlobalStyle(".ddgmbtn:visited {color: white;}");
+
+//Engine Add Style
+addGlobalStyle(".addengine { float: right; padding-bottom: 0px;}"); 
+addGlobalStyle(".addengine:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
+addGlobalStyle(".addengine:visited {color: white;}");
 
 
 // Add jQuery
@@ -48,19 +57,24 @@ function main(){
   var searchVal = $("#search_form_input").val();
   $('<div>').addClass("ddgm").prependTo("body");
   console.log("Search term is " + searchVal);
- 
   
-//Add default Buttons
+  
+//Create default Buttons
   btncreate("Google", "http://www.google.com/search?q=",searchVal);
   btncreate("Youtube","http://www.youtube.com/results?search_query=",searchVal);
   btncreate("Wikipedia","http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=",searchVal);
   btncreate("Github","https://github.com/search?q=",searchVal);
   
+//Create Settings Menu  
+  $('<a>').addClass("addengine").addClass("ddgmbtn").text("Add new Engine").attr( "href" , "#").appendTo(".ddgm");
+
 //Generic Button Creator
   function btncreate(name,searchEngine, _searchVal){
-    $('<a>').addClass("ddgmbutton").text(name).attr( "href" , searchEngine + _searchVal ).appendTo($(".ddgm"));
+    $('<a>').addClass("ddgmbtn").text(name).attr( "href" , searchEngine + _searchVal ).appendTo($(".ddgm"));
     console.log("Added Button with "+ name);
   };
+
+//Add Custom Engine
 }
 
 
@@ -68,8 +82,6 @@ function main(){
 
 
 // load jQuery and execute the main function
-// addJQuery(btncreate); 
-
 addJQuery(main); 
 console.log("added menu");
 
