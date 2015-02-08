@@ -54,6 +54,7 @@ function main(){
   btncreate("Google", "http://www.google.com/search?q=",searchVal);
   btncreate("Youtube","http://www.youtube.com/results?search_query=",searchVal);
   btncreate("Wikipedia","http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=",searchVal);
+  btncreate("Github","https://github.com/search?q=",searchVal);
   
 //Generic Button Creator
   function btncreate(name,searchEngine, _searchVal){
