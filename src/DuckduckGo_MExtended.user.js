@@ -26,8 +26,8 @@ function addGlobalStyle(css) {
     head.appendChild(style);
 }
 
-addGlobalStyle(".ddgm { background-color: #333333; height: 40px; }");
-addGlobalStyle(".ddgmbutton { background-color: #133333; height: 40px; width: 80px; text-align: center; display: inline-block;vertical-align: top; font-family: inherit; font-size: 1.3em; font-weight: 600; color: white;	padding-top: 7px; }");
+addGlobalStyle(".ddgm { background-color:  #24272A; height: 40px; }");
+addGlobalStyle(".ddgmbutton { background-color: #24272A; height: 40px; width: auto; text-align: center; display: inline-block;vertical-align: top; font-family: inherit; font-size: 1.2em; font-weight: 600; color: white;	padding-top: 7px; border-width: 3px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;}"); 
 addGlobalStyle(".ddgmbutton:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
 
 
