@@ -7,10 +7,8 @@
 // @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.meta.js
 // @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.user.js
 // @include         *://duckduckgo.com/?q=*
-// @grant           GM_addStyle
 // @grant           GM_getValue
 // @grant           GM_setValue
-// @grant           GM_xmlhttpRequest
 // @version         3.0.0 Alpha
 // @author          Jguer
 // ==/UserScript==
@@ -59,31 +57,86 @@ function main(){
   console.log("Search term is " + searchVal);
   
   
-//Create default Buttons
+//Create default Engines
   btncreate("Google", "http://www.google.com/search?q=",searchVal);
   btncreate("Youtube","http://www.youtube.com/results?search_query=",searchVal);
   btncreate("Wikipedia","http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=",searchVal);
   btncreate("Github","https://github.com/search?q=",searchVal);
+  btncreate("Kickass.so","https://kickass.so/usearch/",searchVal);
+  btncreate("The Pirate Bay","https://thepiratebay.se/search/", searchVal+"/0/7/0");
+  btncreate("Subtitle Seeker","http://subtitleseeker.ee/search/request.php?q=", searchVal);
+  
+//Load Custom Engines
+  /*
+   for(i=0; i<6; i++) { 
+    var cEngine[i]= GM_getValue(cEngineName[i]);
+    if(cEngine[i].length !== 0){
+    btncreate( cEngineName[i],cEngineURL[i],searchVal);
+    }
+    console.log("Loaded Custom Engines");
+  }
+  */
   
 //Create Settings Menu  
   $('<a>').addClass("addengine").addClass("ddgmbtn").text("Add new Engine").attr( "href" , "#").appendTo(".ddgm");
 
-//Generic Button Creator
+/*
+Logic
+*/
+
+//Generic Engine Creator
   function btncreate(name,searchEngine, _searchVal){
     $('<a>').addClass("ddgmbtn").text(name).attr( "href" , searchEngine + _searchVal ).appendTo($(".ddgm"));
     console.log("Added Button with "+ name);
   };
 
+
+  
 //Add Custom Engine
+  $(".addengine").click(function() {
+    var cName = prompt("Engine Name","Display Name");
+    if(name.length < 25) {
+      var cSearchEngine= prompt("Engine URL (Example:http://www.google.com/search?q=)","URL");
+      btncreate( cName, cSearchEngine ,searchVal);
+//Save Custom engine           
+        for(i=0; i<6; i++) { 
+           if(GM_getValue(cEngineName[i].length === 0)){
+             GM_setValue(cEngineName[i],cName);
+             GM_setValue(cEngineURL[i],cSearchEngine);
+             break;
+           }
+        }
+      }
+    else
+      {
+        alert("Your title is too long");  
+      }
+  });
 }
 
-
-
+/*
+//Read Custom Engines
+  function readCEngines(){
+    for(i=0; i<6; i++) { 
+    var cEngine[i]= GM_getValue(cEngineName[i]);
+    if(cEngine[i].length !== 0){
+    btncreate( cEngineName[i],cEngineURL[i],searchVal);
+    }
+    console.log("Loaded Custom Engines");
+  }
+  };
+*/
+  var i = 0;
+  function readCEngines(){
+    var set = GM_getValue("test", "var");
+    console.log(i + set);
+  }
 
 
 // load jQuery and execute the main function
+readCEngines();
 addJQuery(main); 
-console.log("added menu");
+console.log("Created the Menu");
 
 
 
