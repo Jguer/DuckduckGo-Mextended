@@ -38,6 +38,11 @@ addGlobalStyle(".addengine { float: right; padding-bottom: 0px;}");
 addGlobalStyle(".addengine:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
 addGlobalStyle(".addengine:visited {color: white;}");
 
+//Engine Edit Style
+addGlobalStyle(".enginedit { float: right; padding-bottom: 0px;}"); 
+addGlobalStyle(".enginedit:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
+addGlobalStyle(".enginedit:visited {color: white;}");
+
 /* Disable until someone says their Chrome version 34.02.32.4213 build 3201 rev402 isn't able to use @require.
 // Add jQuery 
 function addJQuery(callback) {
@@ -89,6 +94,7 @@ console.log("#Created the Menu");
   
 //Create Settings Menu  
   $('<a>').addClass("addengine").addClass("ddgmbtn").text("Add new Engine").attr( "href" , "#").appendTo(".ddgm");
+  $('<a>').addClass("enginedit").addClass("ddgmbtn").text("Edit Menu").attr( "href" , "#").appendTo(".ddgm");
 
 /*
 Logic
@@ -124,6 +130,13 @@ Logic
       {
         alert("Your title is too long");  
       }
+  });
+  
+//Edit Engines
+  $(".enginedit").click(function(){
+    
+    
+    
   });
 }
 
