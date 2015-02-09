@@ -13,7 +13,7 @@
 // @grant           GM_getValue
 // @grant           GM_setValue
 // @grant           GM_xmlhttpRequest
-// @version         2.1.0
+// @version         2.1.1
 // @author          jguer
 // @originalauthor  tumpio
 // ==/UserScript==
