@@ -7,6 +7,7 @@
 // @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.meta.js
 // @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.user.js
 // @include         *://duckduckgo.com/?q=*
+// @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
 // @grant           GM_setValue
 // @version         3.0.0 Alpha
@@ -37,8 +38,8 @@ addGlobalStyle(".addengine { float: right; padding-bottom: 0px;}");
 addGlobalStyle(".addengine:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
 addGlobalStyle(".addengine:visited {color: white;}");
 
-
-// Add jQuery
+/* Disable until someone says their Chrome version 34.02.32.4213 build 3201 rev402 isn't able to use @require.
+// Add jQuery 
 function addJQuery(callback) {
   var script = document.createElement("script");
   script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js");
@@ -49,7 +50,7 @@ function addJQuery(callback) {
   }, false);
   document.body.appendChild(script);
 } 
-
+*/
 function main(){
 //Create Menu
   var searchVal = $("#search_form_input").val();
@@ -57,7 +58,7 @@ function main(){
   console.log("Search term is " + searchVal);
   
   
-//Create default Engines
+//Load default Engines
   btncreate("Google", "http://www.google.com/search?q=",searchVal);
   btncreate("Youtube","http://www.youtube.com/results?search_query=",searchVal);
   btncreate("Wikipedia","http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=",searchVal);
@@ -65,17 +66,23 @@ function main(){
   btncreate("Kickass.so","https://kickass.so/usearch/",searchVal);
   btncreate("The Pirate Bay","https://thepiratebay.se/search/", searchVal+"/0/7/0");
   btncreate("Subtitle Seeker","http://subtitleseeker.ee/search/request.php?q=", searchVal);
-  
+
 //Load Custom Engines
-  /*
-   for(i=0; i<6; i++) { 
-    var cEngine[i]= GM_getValue(cEngineName[i]);
-    if(cEngine[i].length !== 0){
-    btncreate( cEngineName[i],cEngineURL[i],searchVal);
-    }
+/*  function LoadCEngines(){
+    var i = 0;
+  /* for(i=0; i<6; i++) { 
+    var _cEngineName[i]= GM_getValue("cEngineName["+i+"]", "0");
+    var _cEngineURL[i]= GM_getValue("cEngineURL["+i+"]", "0");
+
+    if(_cEngineName[i].length !== 0){ 
+    btncreate( _cEngineName[i],_cEngineURL[i],searchVal);
+    console.log("Added Button with "+ _cEngineName[i]);
+    } 
     console.log("Loaded Custom Engines");
-  }
-  */
+    } 
+  };
+  
+  function LoadCEngines(); */
   
 //Create Settings Menu  
   $('<a>').addClass("addengine").addClass("ddgmbtn").text("Add new Engine").attr( "href" , "#").appendTo(".ddgm");
@@ -114,28 +121,11 @@ Logic
   });
 }
 
-/*
-//Read Custom Engines
-  function readCEngines(){
-    for(i=0; i<6; i++) { 
-    var cEngine[i]= GM_getValue(cEngineName[i]);
-    if(cEngine[i].length !== 0){
-    btncreate( cEngineName[i],cEngineURL[i],searchVal);
-    }
-    console.log("Loaded Custom Engines");
-  }
-  };
-*/
-  var i = 0;
-  function readCEngines(){
-    var set = GM_getValue("test", "var");
-    console.log(i + set);
-  }
-
-
 // load jQuery and execute the main function
-readCEngines();
-addJQuery(main); 
+
+//Main function
+main();
+//addJQuery(main); 
 console.log("Created the Menu");
 
 
