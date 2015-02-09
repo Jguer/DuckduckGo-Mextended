@@ -55,8 +55,11 @@ function main(){
 //Create Menu
   var searchVal = $("#search_form_input").val();
   $('<div>').addClass("ddgm").prependTo("body");
-  console.log("Search term is " + searchVal);
+  console.log("##Search term is " + searchVal);
   
+console.log("#Created the Menu");
+ 
+ 
   
 //Load default Engines
   btncreate("Google", "http://www.google.com/search?q=",searchVal);
@@ -66,23 +69,23 @@ function main(){
   btncreate("Kickass.so","https://kickass.so/usearch/",searchVal);
   btncreate("The Pirate Bay","https://thepiratebay.se/search/", searchVal+"/0/7/0");
   btncreate("Subtitle Seeker","http://subtitleseeker.ee/search/request.php?q=", searchVal);
-
-//Load Custom Engines
-/*  function LoadCEngines(){
-    var i = 0;
-  /* for(i=0; i<6; i++) { 
-    var _cEngineName[i]= GM_getValue("cEngineName["+i+"]", "0");
-    var _cEngineURL[i]= GM_getValue("cEngineURL["+i+"]", "0");
-
-    if(_cEngineName[i].length !== 0){ 
-    btncreate( _cEngineName[i],_cEngineURL[i],searchVal);
-    console.log("Added Button with "+ _cEngineName[i]);
-    } 
-    console.log("Loaded Custom Engines");
-    } 
-  };
+  console.log("#Loaded Default Engines");
   
-  function LoadCEngines(); */
+  //Load Custom Engines
+    function LoadCustom(){
+      var _CEngineName = [undefined,undefined,undefined,undefined,undefined,undefined,undefined];
+      var _CEngineURL = [undefined,undefined,undefined,undefined,undefined,undefined,undefined];
+      var arrayLength;
+      for (var i = 0; i < 6; i++) {
+        _CEngineName[i] = GM_getValue("CEngineName"+i,"empty");
+        _CEngineURL[i] = GM_getValue("CEngineUrl"+i,"empty");
+        if(_CEngineName[i] != "empty"){
+          btncreate(_CEngineName[i], _CEngineURL[i],searchVal);
+        }
+      }
+    }
+  
+  LoadCustom();
   
 //Create Settings Menu  
   $('<a>').addClass("addengine").addClass("ddgmbtn").text("Add new Engine").attr( "href" , "#").appendTo(".ddgm");
@@ -94,7 +97,7 @@ Logic
 //Generic Engine Creator
   function btncreate(name,searchEngine, _searchVal){
     $('<a>').addClass("ddgmbtn").text(name).attr( "href" , searchEngine + _searchVal ).appendTo($(".ddgm"));
-    console.log("Added Button with "+ name);
+    console.log("##Added Button with "+ name);
   };
 
 
@@ -105,11 +108,14 @@ Logic
     if(name.length < 25) {
       var cSearchEngine= prompt("Engine URL (Example:http://www.google.com/search?q=)","URL");
       btncreate( cName, cSearchEngine ,searchVal);
+      
 //Save Custom engine           
-        for(i=0; i<6; i++) { 
-           if(GM_getValue(cEngineName[i].length === 0)){
-             GM_setValue(cEngineName[i],cName);
-             GM_setValue(cEngineURL[i],cSearchEngine);
+      var cEnginesave = [undefined,undefined,undefined,undefined,undefined,undefined,undefined];
+      for(var i = 0; i < 6; i++) { 
+        cEnginesave[i] = GM_getValue("CEngineName"+i, "empty");
+           if(cEnginesave[i] == "empty"){
+             GM_setValue("CEngineName"+i,cName);
+             GM_setValue("CEngineUrl"+i,cSearchEngine);
              break;
            }
         }
@@ -121,12 +127,10 @@ Logic
   });
 }
 
-// load jQuery and execute the main function
-
-//Main function
+//Call the Main function
 main();
+
 //addJQuery(main); 
-console.log("Created the Menu");
 
 
 
