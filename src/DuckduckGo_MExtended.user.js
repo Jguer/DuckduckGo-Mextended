@@ -43,6 +43,10 @@ addGlobalStyle(".enginedit { float: right; padding-bottom: 0px;}");
 addGlobalStyle(".enginedit:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
 addGlobalStyle(".enginedit:visited {color: white;}");
 
+//Custom Engine Style
+addGlobalStyle(".cddgmbtn { background-color: #24272A;}"); 
+
+
 /* Disable until someone says their Chrome version 34.02.32.4213 build 3201 rev402 isn't able to use @require.
 // Add jQuery 
 function addJQuery(callback) {
@@ -85,7 +89,7 @@ console.log("#Created the Menu");
         _CEngineName[i] = GM_getValue("CEngineName"+i,"empty");
         _CEngineURL[i] = GM_getValue("CEngineUrl"+i,"empty");
         if(_CEngineName[i] != "empty"){
-          btncreate(_CEngineName[i], _CEngineURL[i],searchVal);
+          cbtncreate(_CEngineName[i], _CEngineURL[i],searchVal);
         }
       }
     }
@@ -99,21 +103,27 @@ console.log("#Created the Menu");
 /*
 Logic
 */
-
+  
 //Generic Engine Creator
   function btncreate(name,searchEngine, _searchVal){
+    
     $('<a>').addClass("ddgmbtn").text(name).attr( "href" , searchEngine + _searchVal ).appendTo($(".ddgm"));
     console.log("##Added Button with "+ name);
   };
 
-
+//Custom Engine Creator
+  function cbtncreate(name,searchEngine, _searchVal){
+    
+    $('<a>').addClass("ddgmbtn").addClass("cddgmbtn").text(name).attr( "href" , searchEngine + _searchVal ).prependTo($(".ddgm"));
+    console.log("##Added Button first with "+ name);
+  };
   
 //Add Custom Engine
   $(".addengine").click(function() {
     var cName = prompt("Engine Name","Display Name");
     if(name.length < 25) {
       var cSearchEngine= prompt("Engine URL (Example:http://www.google.com/search?q=)","URL");
-      btncreate( cName, cSearchEngine ,searchVal);
+      cbtncreate( cName, cSearchEngine ,searchVal);
       
 //Save Custom engine           
       var cEnginesave = [undefined,undefined,undefined,undefined,undefined,undefined,undefined];
