@@ -3,9 +3,9 @@
 // @description     Extends DuckDuckGo by adding a customizable list of additional search engines for making fast searches from other engines.
 // @namespace       greasyfork.org/users/3926-jguer
 // @homepage        https://github.com/Jguer/DuckduckGo-Mextended
-// @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/v3/resources/large.png
-// @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.meta.js
-// @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.user.js
+// @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/large.png
+// @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.meta.js
+// @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.user.js
 // @include         *://duckduckgo.com/?q=*
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
