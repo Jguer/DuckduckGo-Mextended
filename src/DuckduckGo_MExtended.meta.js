@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name            DuckDuckGo MExtended
+// @name            DuckDuckMenu
 // @namespace       greasyfork.org/users/3926-jguer
 // @version         3.0.0 Build 249
 // @author          jguer
-// @description     Extends DDG by adding a customizable list of additional search engines for making fast searches from other engines. Modified version for bigger text,bugfixing and click ease.
+// @description     Extends DuckDuckGo by adding a customizable list of additional search engines for making fast searches from other engines. Modified version for bigger text,bugfixing and click ease.
 // @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/large.png
 // @domain          duckduckgo.com
 // @include         *://duckduckgo.com/?q=*
