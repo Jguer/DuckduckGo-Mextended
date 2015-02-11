@@ -10,15 +10,9 @@
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
 // @grant           GM_setValue
-<<<<<<< HEAD
-// @grant           GM_xmlhttpRequest
-// @version         2.1.1
-// @author          jguer
-// @originalauthor  tumpio
-=======
 // @version         3.0.0 Build 250
 // @author          Jguer
->>>>>>> origin/v3
+
 // ==/UserScript==
 //Styles
 function addGlobalStyle(css) {
