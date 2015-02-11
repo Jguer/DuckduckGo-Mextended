@@ -3,14 +3,14 @@
 // @description     Extends DDG by adding a customizable list of additional search engines for making fast searches from other engines. Modified version for bigger text,bugfixing and click ease.
 // @namespace       greasyfork.org/users/3926-jguer
 // @homepage        https://github.com/Jguer/DuckduckGo-Mextended
-// @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/v3/resources/large.png
-// @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.meta.js
-// @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/v3/src/DuckduckGo_MExtended.user.js
+// @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/large.png
+// @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.meta.js
+// @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.user.js
 // @include         *://duckduckgo.com/?q=*
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
 // @grant           GM_setValue
-// @version         3.0.0 Build 248
+// @version         3.0.0 Build 249
 // @author          Jguer
 // ==/UserScript==
 //Styles
@@ -52,7 +52,7 @@ addGlobalStyle('.ddgembtn:visited {color: white;}');
 
 ;
 /* Disable until someone says their Chrome version 34.02.32.4213 build 3201 rev402 isn't able to use @require.
-// Add jQuery 
+// Add jQuery
 function addJQuery(callback) {
   var script = document.createElement("script");
   script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js");
@@ -62,7 +62,7 @@ function addJQuery(callback) {
     document.body.appendChild(script);
   }, false);
   document.body.appendChild(script);
-} 
+}
 */
 function main() {
   //Create Menu
@@ -70,12 +70,12 @@ function main() {
   $('<div>').addClass('ddgm').prependTo('body');
   console.log('##Search term is ' + searchVal);
   console.log('#Created the Menu');
-  
-  
+
+
   //Load default Engines
-  
+
   function LoadDefault() {
-    var gname = GM_getValue('ddgmDisEngines', 'empty'); 
+    var gname = GM_getValue('ddgmDisEngines', 'empty');
     var dname;
     var durl;
     for(var i= 0; i <7; i++) {
@@ -95,26 +95,26 @@ function main() {
         case 3:
           dname = 'Github';
           durl = 'https://github.com/search?q=';
-          break;      
+          break;
         case 4:
           dname = 'Kickass';
           durl = 'https://kickass.to/usearch/';
-          break;      
+          break;
         case 5:
           dname = 'The Pirate Bay';
           durl = 'https://thepiratebay.se/search/';
-          break;      
+          break;
         case 6:
           dname = 'Subtitle Seeker';
           durl = 'http://subtitleseeker.ee/search/request.php?q=';
-          break;  
-        default: 
+          break;
+        default:
          alert("Error");
       }
     if(gname.indexOf(dname) < 0)
       {
         btncreate(dname,durl,searchVal);
-      } 
+      }
     }
    console.log('#Loaded Default Engines');
   }
@@ -127,7 +127,7 @@ function main() {
   btncreate('The Pirate Bay', 'https://thepiratebay.se/search/', searchVal + '/0/7/0');
   btncreate('Subtitle Seeker', 'http://subtitleseeker.ee/search/request.php?q=', searchVal);
 */
-  
+
  LoadDefault()
   //Load Custom Engines
   function LoadCustom() {
@@ -159,7 +159,7 @@ function main() {
     }
   }
   LoadCustom();
-  //Create Settings Menu  
+  //Create Settings Menu
   $('<a>').addClass('addengine').addClass('ddgmbtn').text('Add new Engine').attr('href', '#').appendTo('.ddgm');
   $('<a>').addClass('enginedit').addClass('ddgmbtn').text('Edit Menu').attr('href', '#').appendTo('.ddgm');
   /*
@@ -185,7 +185,7 @@ Logic
     if (name.length < 25) {
       var cSearchEngine = prompt('Engine URL (Example:http://www.google.com/search?q=)', 'URL');
       cbtncreate(cName, cSearchEngine, searchVal);
-      //Save Custom engine           
+      //Save Custom engine
       var cEnginesave = [
         undefined,
         undefined,
@@ -203,7 +203,7 @@ Logic
           break;
         }
       }
-    } 
+    }
     else
     {
       alert('Your title is too long');
@@ -219,7 +219,7 @@ Logic
       $('.ddgem').slideUp(600, function() {
         $(this).remove();
       });
-    } 
+    }
     else {
       //if removex doesn't exist add menu
       $('<a>').text(' x').addClass('removex').hide().attr('href', '#').appendTo('.engine').fadeIn(300);
@@ -228,14 +228,14 @@ Logic
 
     }
   });
-  
-  
+
+
   //Restore Default Engines
   $(document).on('click', '#restoredengines', function () {
-    GM_setValue('ddgmDisEngines', 'empty'); 
+    GM_setValue('ddgmDisEngines', 'empty');
     location.reload();
   });
-  
+
   //Remove Engine
   $(document).on('click', '.removex', function () {
     var comparedel = $(this).parent('.engine').clone().children().remove().end().text();
@@ -258,13 +258,13 @@ Logic
         break;
       }
     }
-  var disabledengines = GM_getValue('ddgmDisEngines', 'empty'); 
+  var disabledengines = GM_getValue('ddgmDisEngines', 'empty');
   GM_setValue('ddgmDisEngines', disabledengines + ' ' + comparedel);
-  disabledengines = GM_getValue('ddgmDisEngines', 'empty'); 
+  disabledengines = GM_getValue('ddgmDisEngines', 'empty');
   console.log("#Disabled Engines "+ disabledengines)
   });
 }
 //Call the Main function
 
 main();
-//addJQuery(main); 
+//addJQuery(main);
