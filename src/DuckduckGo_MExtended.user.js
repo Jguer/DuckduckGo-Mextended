@@ -13,38 +13,41 @@
 // @version         3.0.0 Alpha
 // @author          Jguer
 // ==/UserScript==
-
 //Styles
 function addGlobalStyle(css) {
-    var head, style;
-    head = document.getElementsByTagName('head')[0];
-    if (!head) { return; }
-    style = document.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = css;
-    head.appendChild(style);
+  var head,
+  style;
+  head = document.getElementsByTagName('head') [0];
+  if (!head) {
+    return;
+  }
+  style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = css;
+  head.appendChild(style);
 }
 
 //Menu Style
-addGlobalStyle(".ddgm { background-color:  #24272A; height: 40px; }");
-
+addGlobalStyle('.ddgm { background-color:  #24272A; height: 40px; }');
 //Button Style
-addGlobalStyle(".ddgmbtn { background-color: #24272A; height: 25px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 6px;padding-bottom: 8px; font-family: inherit; font-size: 1.2em; font-weight: 600; color: white; border-width: 3px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;}"); 
-addGlobalStyle(".ddgmbtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
-addGlobalStyle(".ddgmbtn:visited {color: white;}");
-
-//Engine Add Style
-addGlobalStyle(".addengine { float: right; padding-bottom: 0px;}"); 
-addGlobalStyle(".addengine:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
-addGlobalStyle(".addengine:visited {color: white;}");
-
-//Engine Edit Style
-addGlobalStyle(".enginedit { float: right; padding-bottom: 0px;}"); 
-addGlobalStyle(".enginedit:hover { background-color:  #5A6269; color: white; text-decoration:none;}");
-addGlobalStyle(".enginedit:visited {color: white;}");
-
+addGlobalStyle('.ddgmbtn { background-color: #24272A; height: 25px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 6px;padding-bottom: 8px; font-family: inherit; font-size: 1.2em; font-weight: 600; color: white; border-width: 3px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;}');
+addGlobalStyle('.ddgmbtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
+addGlobalStyle('.ddgmbtn:visited {color: white;}');
 //Custom Engine Style
-addGlobalStyle(".cddgmbtn { background-color: #24272A;}"); 
+addGlobalStyle('.cddgmbtn { background-color: #24272A;}');
+//Engine Add Style
+addGlobalStyle('.addengine { float: right; padding-bottom: 0px;}');
+addGlobalStyle('.addengine:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
+addGlobalStyle('.addengine:visited {color: white;}');
+
+//Edit Menu Style
+addGlobalStyle('.enginedit { float: right; padding-bottom: 0px;}');
+addGlobalStyle('.enginedit:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
+addGlobalStyle('.enginedit:visited {color: white;}');
+addGlobalStyle('.removex { color: red;font-family: inherit; font-weight: bold; position:relative; top:-5px;}');
+addGlobalStyle('.removex:visited {color: red;}')
+addGlobalStyle('.removex:hover { color: white; text-decoration:none;}');
+;
 
 
 /* Disable until someone says their Chrome version 34.02.32.4213 build 3201 rev402 isn't able to use @require.
@@ -60,108 +63,137 @@ function addJQuery(callback) {
   document.body.appendChild(script);
 } 
 */
-function main(){
-//Create Menu
-  var searchVal = $("#search_form_input").val();
-  $('<div>').addClass("ddgm").prependTo("body");
-  console.log("##Search term is " + searchVal);
-  
-console.log("#Created the Menu");
- 
- 
-  
-//Load default Engines
-  btncreate("Google", "http://www.google.com/search?q=",searchVal);
-  btncreate("Youtube","http://www.youtube.com/results?search_query=",searchVal);
-  btncreate("Wikipedia","http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=",searchVal);
-  btncreate("Github","https://github.com/search?q=",searchVal);
-  btncreate("Kickass.so","https://kickass.so/usearch/",searchVal);
-  btncreate("The Pirate Bay","https://thepiratebay.se/search/", searchVal+"/0/7/0");
-  btncreate("Subtitle Seeker","http://subtitleseeker.ee/search/request.php?q=", searchVal);
-  console.log("#Loaded Default Engines");
+function main() {
+  //Create Menu
+  var searchVal = $('#search_form_input').val();
+  $('<div>').addClass('ddgm').prependTo('body');
+  console.log('##Search term is ' + searchVal);
+  console.log('#Created the Menu');
+  //Load default Engines
+  btncreate('Google', 'http://www.google.com/search?q=', searchVal);
+  btncreate('Youtube', 'http://www.youtube.com/results?search_query=', searchVal);
+  btncreate('Wikipedia', 'http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=', searchVal);
+  btncreate('Github', 'https://github.com/search?q=', searchVal);
+  btncreate('Kickass.so', 'https://kickass.so/usearch/', searchVal);
+  btncreate('The Pirate Bay', 'https://thepiratebay.se/search/', searchVal + '/0/7/0');
+  btncreate('Subtitle Seeker', 'http://subtitleseeker.ee/search/request.php?q=', searchVal);
+  console.log('#Loaded Default Engines');
   
   //Load Custom Engines
-    function LoadCustom(){
-      var _CEngineName = [undefined,undefined,undefined,undefined,undefined,undefined,undefined];
-      var _CEngineURL = [undefined,undefined,undefined,undefined,undefined,undefined,undefined];
-      var arrayLength;
-      for (var i = 0; i < 6; i++) {
-        _CEngineName[i] = GM_getValue("CEngineName"+i,"empty");
-        _CEngineURL[i] = GM_getValue("CEngineUrl"+i,"empty");
-        if(_CEngineName[i] != "empty"){
-          cbtncreate(_CEngineName[i], _CEngineURL[i],searchVal);
-        }
+  function LoadCustom() {
+    var _CEngineName = [
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined
+    ];
+    var _CEngineURL = [
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined
+    ];
+    var arrayLength;
+    for (var i = 0; i < 6; i++) {
+      _CEngineName[i] = GM_getValue('CEngineName' + i, 'empty');
+      _CEngineURL[i] = GM_getValue('CEngineUrl' + i, 'empty');
+      if (_CEngineName[i] != 'empty') {
+        cbtncreate(_CEngineName[i], _CEngineURL[i], searchVal);
       }
     }
-  
+  }
   LoadCustom();
-  
-//Create Settings Menu  
-  $('<a>').addClass("addengine").addClass("ddgmbtn").text("Add new Engine").attr( "href" , "#").appendTo(".ddgm");
-  $('<a>').addClass("enginedit").addClass("ddgmbtn").text("Edit Menu").attr( "href" , "#").appendTo(".ddgm");
-
-/*
+  //Create Settings Menu  
+  $('<a>').addClass('addengine').addClass('ddgmbtn').text('Add new Engine').attr('href', '#').appendTo('.ddgm');
+  $('<a>').addClass('enginedit').addClass('ddgmbtn').text('Edit Menu').attr('href', '#').appendTo('.ddgm');
+  /*
 Logic
 */
-  
-//Generic Engine Creator
-  function btncreate(name,searchEngine, _searchVal){
-    
-    $('<a>').addClass("ddgmbtn").text(name).attr( "href" , searchEngine + _searchVal ).appendTo($(".ddgm"));
-    console.log("##Added Button with "+ name);
+  //Generic Engine Creator
+  function btncreate(name, searchEngine, _searchVal) {
+    if(name != undefined & searchEngine != undefined) {
+    $('<a>').addClass('ddgmbtn').text(name).attr('href', searchEngine + _searchVal).appendTo('.ddgm');
+    console.log('##Added Button with ' + name);
+    }
   };
-
-//Custom Engine Creator
-  function cbtncreate(name,searchEngine, _searchVal){
-    
-    $('<a>').addClass("ddgmbtn").addClass("cddgmbtn").text(name).attr( "href" , searchEngine + _searchVal ).prependTo($(".ddgm"));
-    console.log("##Added Button first with "+ name);
+  //Custom Engine Creator
+  function cbtncreate(name, searchEngine, _searchVal) {
+    if(name != undefined & searchEngine != undefined) {
+      $('<a>').addClass('ddgmbtn').addClass('cddgmbtn').text(name).attr('href', searchEngine + _searchVal).prependTo('.ddgm');
+      console.log('##Added Button first with ' + name);
+    }
   };
-  
-//Add Custom Engine
-  $(".addengine").click(function() {
-    var cName = prompt("Engine Name","Display Name");
-    if(name.length < 25) {
-      var cSearchEngine= prompt("Engine URL (Example:http://www.google.com/search?q=)","URL");
-      cbtncreate( cName, cSearchEngine ,searchVal);
-      
-//Save Custom engine           
-      var cEnginesave = [undefined,undefined,undefined,undefined,undefined,undefined,undefined];
-      for(var i = 0; i < 6; i++) { 
-        cEnginesave[i] = GM_getValue("CEngineName"+i, "empty");
-           if(cEnginesave[i] == "empty"){
-             GM_setValue("CEngineName"+i,cName);
-             GM_setValue("CEngineUrl"+i,cSearchEngine);
-             break;
-           }
+  //Add Custom Engine
+  $('.addengine').click(function () {
+    var cName = prompt('Engine Name', 'Display Name');
+    if (name.length < 25) {
+      var cSearchEngine = prompt('Engine URL (Example:http://www.google.com/search?q=)', 'URL');
+      cbtncreate(cName, cSearchEngine, searchVal);
+      //Save Custom engine           
+      var cEnginesave = [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined
+      ];
+      for (var i = 0; i < 6; i++) {
+        cEnginesave[i] = GM_getValue('CEngineName' + i, 'empty');
+        if (cEnginesave[i] == 'empty') {
+          GM_setValue('CEngineName' + i, cName);
+          GM_setValue('CEngineUrl' + i, cSearchEngine);
+          break;
         }
       }
+    } 
     else
-      {
-        alert("Your title is too long");  
+    {
+      alert('Your title is too long');
+    }
+  });
+  //Edit Engines
+  $('.enginedit').click(function() {
+    if( $('.removex').length ){
+      $(".removex").remove();
+    } 
+    else {
+       $('<a>').text(' x').addClass("removex").attr('href', '#').appendTo('.cddgmbtn');
+    }
+
+  });
+//Remove Engine
+  $( document ).on( 'click', '.removex', function () {
+   var comparedel = $(this).parent('.cddgmbtn').clone().children().remove().end().text();
+   $(this).closest('.cddgmbtn').remove();
+   console.log("#Removed Engine " + comparedel);
+    var cEnginedel = [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined
+    ];
+    for (var i = 0; i < 6; i++) {
+        cEnginedel[i] = GM_getValue('CEngineName' + i, 'empty');
+        if (cEnginedel[i] == comparedel) {
+          GM_setValue('CEngineName' + i, "empty");
+          GM_setValue('CEngineUrl' + i, "empty");
+          break;
+        }
       }
   });
-  
-//Edit Engines
-  $(".enginedit").click(function(){
-    
-    
-    
-  });
 }
-
 //Call the Main function
+
 main();
-
 //addJQuery(main); 
-
-
-
-
-
-
-
-
-
-
-
