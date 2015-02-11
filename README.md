@@ -18,8 +18,8 @@ Tested on:
 
 ###TO-DO:
 -
-![DDG](https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/v3/resources/Sample.jpg)
 
+![ddm](https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/Sample.jpg "DDM")
 Suitable for any DDG theme.
 
 MIT LICENSE
