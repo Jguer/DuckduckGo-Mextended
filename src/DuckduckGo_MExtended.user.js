@@ -10,7 +10,7 @@
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
 // @grant           GM_setValue
-// @version         3.0.0 Build 240
+// @version         3.0.0 Build 241
 // @author          Jguer
 // ==/UserScript==
 //Styles
@@ -86,27 +86,27 @@ function main() {
           break;
         case 1:
           dname = 'Youtube';
-          durl = 'http://www.google.com/search?q=';
+          durl = 'http://www.youtube.com/results?search_query=';
           break;
         case 2:
           dname = 'Wikipedia';
-          durl = 'http://www.google.com/search?q=';
+          durl = 'http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=';
           break;
         case 3:
           dname = 'Github';
-          durl = 'http://www.google.com/search?q=';
+          durl = 'https://github.com/search?q=';
           break;      
         case 4:
           dname = 'Kickass';
-          durl = 'http://www.google.com/search?q=';
+          durl = 'https://kickass.to/usearch/';
           break;      
         case 5:
           dname = 'The Pirate Bay';
-          durl = 'http://www.google.com/search?q=';
+          durl = 'https://thepiratebay.se/search/';
           break;      
         case 6:
           dname = 'Subtitle Seeker';
-          durl = 'http://www.google.com/search?q=';
+          durl = 'http://subtitleseeker.ee/search/request.php?q=';
           break;  
         default: 
          alert("Error");
@@ -150,7 +150,7 @@ function main() {
       undefined
     ];
     var arrayLength;
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 9; i++) {
       _CEngineName[i] = GM_getValue('CEngineName' + i, 'empty');
       _CEngineURL[i] = GM_getValue('CEngineUrl' + i, 'empty');
       if (_CEngineName[i] != 'empty') {
@@ -195,7 +195,7 @@ Logic
         undefined,
         undefined
       ];
-      for (var i = 0; i < 6; i++) {
+      for (var i = 0; i < 9; i++) {
         cEnginesave[i] = GM_getValue('CEngineName' + i, 'empty');
         if (cEnginesave[i] == 'empty') {
           GM_setValue('CEngineName' + i, cName);
@@ -248,7 +248,7 @@ Logic
       undefined,
       undefined
     ];
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 9; i++) {
       cEnginedel[i] = GM_getValue('CEngineName' + i, 'empty');
       if (cEnginedel[i] == comparedel) {
         GM_setValue('CEngineName' + i, 'empty');
