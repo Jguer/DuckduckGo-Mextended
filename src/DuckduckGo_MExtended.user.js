@@ -10,7 +10,7 @@
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
 // @grant           GM_setValue
-// @version         3.0.0 Build 241
+// @version         3.0.0 Build 246
 // @author          Jguer
 // ==/UserScript==
 //Styles
@@ -46,7 +46,7 @@ addGlobalStyle('.removex { color: red;font-family: inherit; font-weight: bold; p
 addGlobalStyle('.removex:visited {color: red;}')
 addGlobalStyle('.removex:hover { color: white; text-decoration:none;}');
 addGlobalStyle('.ddgem { background-color: #24272A; height: 20px; }');
-addGlobalStyle('.ddgembtn { float: right; background-color: #24272A; height: 14px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 3px;padding-bottom: 3px; font-family: inherit; font-size: 0.8em; font-weight: 600; color: white; border-width: 3px; border-bottom-width: 0px;border-top-width: 0px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;position:relative; top:-2px;}');
+addGlobalStyle('.ddgembtn { float: right; background-color: #24272A; height: 15px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 3px;padding-bottom: 3px; font-family: inherit; font-size: 0.8em; font-weight: 600; color: white; border-width: 3px; border-bottom-width: 0px;border-top-width: 0px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;position:relative; top:-2px;}');
 addGlobalStyle('.ddgembtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
 addGlobalStyle('.ddgembtn:visited {color: white;}');
 
@@ -175,7 +175,7 @@ Logic
   //Custom Engine Creator
   function cbtncreate(name, searchEngine, _searchVal) {
     if (name != undefined & searchEngine != undefined) {
-      $('<a>').addClass('ddgmbtn').addClass('engine').addClass('cddgmbtn').text(name).attr('href', searchEngine + _searchVal).prependTo('.ddgm');
+      $('<a>').addClass('ddgmbtn').addClass('engine').addClass('cddgmbtn').hide().text(name).attr('href', searchEngine + _searchVal).prependTo('.ddgm').fadeIn(1000);
       console.log('##Added Button first with ' + name);
     }
   };
@@ -220,7 +220,7 @@ Logic
     } 
     else {
       //if removex doesn't exist add menu
-      $('<a>').text(' x').addClass('removex').attr('href', '#').appendTo('.engine');
+      $('<a>').text(' x').addClass('removex').hide().attr('href', '#').appendTo('.engine').fadeIn(1000);
       $('<div>').addClass('ddgem').slideDown(600).insertAfter('.ddgm');
       $('<a>').addClass('ddgembtn').attr("id","restoredengines").text('Restore default Engines').attr('href', '#').appendTo('.ddgem');
 
