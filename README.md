@@ -9,6 +9,7 @@ Intended for Greasemonkey.
 Tested on:
 - Cyberfox 35.0.1
 - Firefox 35
+
 ###Features:
 
 - Default Engines: Google, Youtube, Wikipedia, Github, Kickass, ThePirateBay,Subtitle Seeker.
