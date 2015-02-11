@@ -10,7 +10,7 @@
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
 // @grant           GM_setValue
-// @version         3.0.0 Build 239
+// @version         3.0.0 Build 240
 // @author          Jguer
 // ==/UserScript==
 //Styles
@@ -46,7 +46,7 @@ addGlobalStyle('.removex { color: red;font-family: inherit; font-weight: bold; p
 addGlobalStyle('.removex:visited {color: red;}')
 addGlobalStyle('.removex:hover { color: white; text-decoration:none;}');
 addGlobalStyle('.ddgem { background-color: #24272A; height: 20px; }');
-addGlobalStyle('.ddgembtn { background-color: #24272A; height: 14px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 3px;padding-bottom: 3px; font-family: inherit; font-size: 0.8em; font-weight: 600; color: white; border-width: 3px; border-bottom-width: 0px;border-top-width: 0px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;position:relative; top:-5px;}');
+addGlobalStyle('.ddgembtn { float: right; background-color: #24272A; height: 14px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 3px;padding-bottom: 3px; font-family: inherit; font-size: 0.8em; font-weight: 600; color: white; border-width: 3px; border-bottom-width: 0px;border-top-width: 0px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;position:relative; top:-2px;}');
 addGlobalStyle('.ddgembtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
 addGlobalStyle('.ddgembtn:visited {color: white;}');
 
@@ -211,7 +211,7 @@ Logic
   });
   //Edit Engines
   $('.enginedit').click(function () {
-    if ($('.removex').length) {
+    if ($('#restoredengines').length) {
       //if removex exists remove edit menu
       $('.removex').remove();
       $('.ddgem').slideUp(600, function() {
@@ -231,6 +231,7 @@ Logic
   //Restore Default Engines
   $(document).on('click', '#restoredengines', function () {
     GM_setValue('ddgmDisEngines', 'empty'); 
+    location.reload();
   });
   
   //Remove Engine
