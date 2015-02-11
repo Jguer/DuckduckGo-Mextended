@@ -1,5 +1,6 @@
 #DuckduckMenu
 
+####If you are having issues with v2.1.0, the new version is being worked on and fully supports all browsers
 
 Originally a fork of DuckduckGo Extended aimed at fixing bugs and improving quality.
 Fully revised code, updated to latest standards.
@@ -11,7 +12,17 @@ Tested on:
 - Firefox 35
 
 ###Features:
+- Default Engines: Google, Youtube, Wikipedia, Github, Kickass, ThePirateBay,Subtitle Seeker.
+- Add and Remove Custom Engines.
+- Native look
 
+####TO-DO:
+-Development has been dropped for this version.
+-Jquery Version being developed in branch V3 will be more stable and respecting newer standards.
+![DDG](https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/Sample.jpg)
+
+Recommended use with DDG's dark theme
+=======
 - Default Engines: Google, Youtube, Wikipedia, Github, Kickass, ThePirateBay,Subtitle Seeker.
 - Add and Remove Custom Engines.
 - Native look
