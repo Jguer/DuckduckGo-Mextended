@@ -122,11 +122,11 @@ function LoadCustom() {
     }
   }
 }
-  
+
 LoadDefault();
 LoadCustom();
-  
-//Create Settings Menu  
+
+//Create Settings Menu
 $('<a>').addClass('enginedit').addClass('ddgmbtn').text('Edit Menu').attr('href', '#').appendTo('.ddgm');
 
 /*
@@ -136,7 +136,7 @@ Logic
 
 
 */
-  
+
 //Default Engine Creator
 function btncreate(name, searchEngine, _searchVal) {
   if (name != undefined & searchEngine != undefined) {
@@ -162,7 +162,7 @@ $('.enginedit').click(function () {
     $('.ddgem').slideUp(600, function () {
       $(this).remove();
     });
-  } 
+  }
   else {
     //if removex doesn't exist add menu
     $('<a>').text(' x').addClass('removex').hide().attr('href', '#').appendTo('.engine').fadeIn(300);
@@ -178,7 +178,7 @@ $(document).on('click', '#addmengine', function () {
     console.log('Called Search Engine Prompt');
     var cSearchEngine = prompt('Engine URL (Example:http://www.google.com/search?q={searchTerms})', 'URL');
     cbtncreate(cName, cSearchEngine, searchVal);
-    //Save Custom engine           
+    //Save Custom engine
     var cEnginesave = [undefined];
     for (var i = 0; i < 15; i++) {
       cEnginesave[i] = GM_getValue('CEngineName' + i, 'empty');
@@ -188,7 +188,7 @@ $(document).on('click', '#addmengine', function () {
         break;
       }
     }
-  } 
+  }
   else
   {
     alert('Your title is too long');
@@ -279,13 +279,13 @@ addNewEngine: function () {
 
 function News() {
   var Displaynews = GM_getValue('DDMv301b282', "1");
-  
+
   if(Displaynews == "1"){
     $('<div>').addClass('ddgmnews').text("New: Did you know? If you go to mycroftproject.com you can add add engines just by searching their name. This type of message will only appear once after updates.").insertAfter($("#header_wrapper"));
 };
   GM_setValue('DDMv301b282', "0");
   }
-  
+
 //Function Calling
 if (window.location.href.indexOf('http://mycroftproject.com/') !== - 1) {
 mycroft.addLinks(document.getElementById('plugins'));
