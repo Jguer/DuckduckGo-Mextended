@@ -9,6 +9,7 @@
 // @include         *://duckduckgo.com/?q=*
 // @grant           GM_getValue
 // @grant           GM_setValue
+// @grant           GM_xmlhttpRequest
 // @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.meta.js
 // @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.user.js
 // @updateVersion   3.0.0 Build 282
