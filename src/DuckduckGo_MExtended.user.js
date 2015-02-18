@@ -4,16 +4,19 @@
 // @namespace       greasyfork.org/users/3926-jguer
 // @homepage        https://github.com/Jguer/DuckduckGo-Mextended
 // @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/large.png
+// @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.meta.js
+// @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.user.js
 // @include         *://duckduckgo.com/?q=*
 // @match           http://mycroftproject.com/*
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @grant           GM_getValue
 // @grant           GM_setValue
 // @grant           GM_xmlhttpRequest
-// @version         3.0.1 Build 1
+// @version         3.0.1 Build 282
 // @author          Jguer
 // ==/UserScript==
 //Styles
+
 function addGlobalStyle(css) {
   var head,
   style;
@@ -27,7 +30,7 @@ function addGlobalStyle(css) {
   head.appendChild(style);
 }
 //Main Menu Style
-addGlobalStyle('.ddgm { background-color:  #24272A; height: 40px; display: block; }');
+addGlobalStyle('.ddgm { background-color: #24272A; height: 40px; display: block; }');
 //Button Style
 addGlobalStyle('.ddgmbtn { background-color: #24272A; height: 25px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 6px;padding-bottom: 6px; font-family: inherit; font-size: 1.2em; font-weight: 600; color: white; border-width: 3px; border-bottom-width: 0px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;}');
 addGlobalStyle('.ddgmbtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
@@ -50,8 +53,8 @@ addGlobalStyle('.ddgembtn { float: right; background-color: #24272A; height: 14p
 addGlobalStyle('.ddgembtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
 addGlobalStyle('.ddgembtn:visited {color: white;}');
 
-//MycroftStyle
-addGlobalStyle('.addbtn {color: white; background: #0199d9; width: auto; height: auto; padding: 2px 10px; margin: 0;border: 1px solid #018dc4;-webkit-border-radius: 11px;border-radius: 11px;}');
+//News Style
+addGlobalStyle('.ddgmnews {color: white; background-color: #DE5833;text-align: center;-o-text-overflow: ellipsis;text-overflow: ellipsis;width: auto;height: auto; padding: 5px;margin: 0;overflow: visible;display: block;float: none;z-index: auto;-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;position: static;opacity: 1;cursor: default;border: none;-webkit-border-radius: 0 0 20px 20px;border-radius: 0 0 20px 20px;}');
 
 //-DDG-//
 function ddm() {
@@ -84,7 +87,7 @@ function ddm() {
           durl = 'https://github.com/search?q=';
           break;
         case 4:
-          dname = 'Kickass';
+          dname = 'Kickass.to';
           durl = 'https://kickass.to/usearch/';
           break;
         case 5:
@@ -105,15 +108,6 @@ function ddm() {
   }
   console.log('#Loaded Default Engines');
 }
-/*
-  btncreate('Google', 'http://www.google.com/search?q=', searchVal);
-  btncreate('Youtube', 'http://www.youtube.com/results?search_query=', searchVal);
-  btncreate('Wikipedia', 'http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=', searchVal);
-  btncreate('Github', 'https://github.com/search?q=', searchVal);
-  btncreate('Kickass', 'https://kickass.to/usearch/', searchVal);
-  btncreate('The Pirate Bay', 'https://thepiratebay.se/search/', searchVal + '/0/7/0');
-  btncreate('Subtitle Seeker', 'http://subtitleseeker.ee/search/request.php?q=', searchVal);
-*/
 
 //Load Custom Engines
 function LoadCustom() {
@@ -158,10 +152,6 @@ function cbtncreate(name, searchEngine, _searchVal) {
     console.log('##Added Button first with ' + name);
   }
 };
-//Add Custom Engine
-$('.addengine').click(function () {
-
-});
 //Edit Engines
 $('.enginedit').click(function () {
   if ($('#restoredengines').length) {
@@ -288,11 +278,18 @@ addNewEngine: function () {
 };
 
 function News() {
+  var Displaynews = GM_getValue('DDMv301b282', "1");
+  
+  if(Displaynews == "1"){
+    $('<div>').addClass('ddgmnews').text("New: Did you know? If you go to mycroftproject.com you can add add engines just by searching their name. This type of message will only appear once after updates.").insertAfter($("#header_wrapper"));
 };
-
+  GM_setValue('DDMv301b282', "0");
+  }
+  
 //Function Calling
 if (window.location.href.indexOf('http://mycroftproject.com/') !== - 1) {
 mycroft.addLinks(document.getElementById('plugins'));
 } else {
 ddm();
+News();
 }
