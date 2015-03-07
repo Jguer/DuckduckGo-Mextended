@@ -12,7 +12,8 @@
 // @grant           GM_getValue
 // @grant           GM_setValue
 // @grant           GM_xmlhttpRequest
-// @version         3.0.1 Build 282
+// @license         MIT
+// @version         3.0.1 Build 283
 // @author          Jguer
 // ==/UserScript==
 //Styles
