@@ -6,6 +6,7 @@
 // @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/large.png
 // @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.meta.js
 // @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.user.js
+// @contributionURL https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joaogg3@hotmail.com&item_name=Kickass+24+donation
 // @include         *://duckduckgo.com/?q=*
 // @match           http://mycroftproject.com/*
 // @require         //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
@@ -13,7 +14,7 @@
 // @grant           GM_setValue
 // @grant           GM_xmlhttpRequest
 // @license         MIT
-// @version         3.0.1 Build 283
+// @version         3.0.1 Build 284
 // @author          Jguer
 // ==/UserScript==
 //Styles
