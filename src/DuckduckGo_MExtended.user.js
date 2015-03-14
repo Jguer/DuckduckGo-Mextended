@@ -3,9 +3,9 @@
 // @description     Extends DuckDuckGo by adding a customizable list of additional search engines for making fast searches from other engines.
 // @namespace       greasyfork.org/users/3926-jguer
 // @homepage        https://github.com/Jguer/DuckduckGo-Mextended
-// @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/large.png
 // @updateURL       https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.meta.js
 // @downloadURL     https://github.com/Jguer/DuckduckGo-Mextended/raw/master/src/DuckduckGo_MExtended.user.js
+// @icon            https://raw.githubusercontent.com/Jguer/DuckduckGo-Mextended/master/resources/large.png
 // @contributionURL https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joaogg3@hotmail.com&item_name=Kickass+24+donation
 // @include         *://duckduckgo.com/?q=*
 // @match           http://mycroftproject.com/*
@@ -14,7 +14,7 @@
 // @grant           GM_setValue
 // @grant           GM_xmlhttpRequest
 // @license         MIT
-// @version         3.0.1 Build 284
+// @version         3.0.1 Build 292
 // @author          Jguer
 // ==/UserScript==
 //Styles
@@ -32,7 +32,7 @@ function addGlobalStyle(css) {
   head.appendChild(style);
 }
 //Main Menu Style
-addGlobalStyle('.ddgm { background-color: #24272A; height: 40px; display: block; }');
+addGlobalStyle('.ddgm { background-color: #24272A; height: auto; display: inline-block;width: 100%; }');
 //Button Style
 addGlobalStyle('.ddgmbtn { background-color: #24272A; height: 25px; width: auto; text-align: center; display: inline-block; vertical-align: middle;padding-top: 6px;padding-bottom: 6px; font-family: inherit; font-size: 1.2em; font-weight: 600; color: white; border-width: 3px; border-bottom-width: 0px; border-color:  #24272A; padding-left: 4px; padding-right: 4px; border-style: solid;}');
 addGlobalStyle('.ddgmbtn:hover { background-color:  #5A6269; color: white; text-decoration:none;}');
@@ -142,7 +142,7 @@ Logic
 //Default Engine Creator
 function btncreate(name, searchEngine, _searchVal) {
   if (name != undefined & searchEngine != undefined) {
-    $('<a>').addClass('ddgmbtn').addClass('engine').hide().text(name).attr('href', searchEngine + _searchVal).appendTo('.ddgm').fadeIn(200);
+    $('<a>').addClass('ddgmbtn').addClass('engine').hide().text(name).attr('href', searchEngine + _searchVal).appendTo('.ddgm').fadeIn(100);
     console.log('##Added Button with ' + name);
   }
 };
@@ -150,7 +150,7 @@ function btncreate(name, searchEngine, _searchVal) {
 function cbtncreate(name, searchEngine, _searchVal) {
   if (name != undefined & searchEngine != undefined) {
     searchEngine = searchEngine.replace('{searchTerms}', _searchVal);
-    $('<a>').addClass('ddgmbtn').addClass('engine').addClass('cddgmbtn').hide().text(name).attr('href', searchEngine).prependTo('.ddgm').fadeIn(200);
+    $('<a>').addClass('ddgmbtn').addClass('engine').addClass('cddgmbtn').hide().text(name).attr('href', searchEngine).prependTo('.ddgm').fadeIn(100);
     console.log('##Added Button first with ' + name);
   }
 };
@@ -158,17 +158,17 @@ function cbtncreate(name, searchEngine, _searchVal) {
 $('.enginedit').click(function () {
   if ($('#restoredengines').length) {
     //if removex exists remove edit menu
-    $('.removex').fadeOut(300, function () {
+    $('.removex').fadeOut(200, function () {
       $(this).remove();
     });
-    $('.ddgem').slideUp(600, function () {
+    $('.ddgem').slideUp(300, function () {
       $(this).remove();
     });
   } 
   else {
     //if removex doesn't exist add menu
     $('<a>').text(' x').addClass('removex').hide().attr('href', '#').appendTo('.engine').fadeIn(300);
-    $('<div>').addClass('ddgem').slideDown(600).insertAfter('.ddgm');
+    $('<div>').addClass('ddgem').slideDown(300).insertAfter('.ddgm');
     $('<a>').addClass('ddgembtn').attr('id', 'addmengine').text('Add new Engine (Manual)').attr('href', '#').appendTo('.ddgem');
     $('<a>').addClass('ddgembtn').attr('id', 'restoredengines').text('Restore default Engines').attr('href', '#').appendTo('.ddgem');
   }
