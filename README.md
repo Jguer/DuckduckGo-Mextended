@@ -8,8 +8,8 @@ Extends DDG by adding a customizable list of additional search engines for makin
 Intended for Greasemonkey.
 
 Tested on:
-- Cyberfox 35.0.1
-- Firefox 35
+- Waterfox 36
+- Firefox 36
 - Chrome 41
 
 ###Features:
